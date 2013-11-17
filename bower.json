@@ -1,0 +1,8 @@
+{
+  "name": "globalize-slides",
+  "version": "0.0.1-pre",
+  "dependencies": {
+    "reveal.js": "hakimel/reveal.js",
+    "highlight.js": "highlight.js#7.3.0"
+  }
+}
