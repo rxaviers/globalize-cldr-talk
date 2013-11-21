@@ -1,6 +1,6 @@
 # Globalize ♥ CLDR
 
-Slides for the Globalize and CLDR talk.
+Slides for the Globalize and CLDR talk. ([live presentation](http://rxaviers.github.io/globalize-cldr-talk))
 
 Internationalization is the process that provides users with a localized experience that matches their own cultural and linguistic expectations. Learn how jQuery is improving its Globalize project to leverage the official CLDR JSON data, allow users to load as much or as little data as they need, avoid duplicating data if using multiple i18n libraries that leverage CLDR, and that run in browsers or node.js.
 
