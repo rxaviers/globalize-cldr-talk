@@ -6,7 +6,7 @@
 
 		<title>Globalize ♥ CLDR</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="description" content="Internationalization is the process that provides users with a localized experience that matches their own cultural and linguistic expectations. Learn how jQuery is improving its Globalize project to leverage the official CLDR JSON data, allow users to load as much or as little data as they need, avoid duplicating data if using multiple i18n libraries that leverage CLDR, and that run in browsers or node.js">
 		<meta name="author" content="Rafael Xavier de Souza">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,8 @@
 		}
 
 		.white p,
+		.white em,
+		.white li,
 		.white h1,
 		.white h2,
 		.white h3,
@@ -47,6 +49,21 @@
 		.reveal section.white img {
 			border: 0 none;
 			box-shadow: none;
+		}
+
+		ul.inline {
+			list-style: none;
+			width: 100%;
+		}
+		ul.inline li {
+			padding: 0 0.5em;
+			display: inline-block;
+		}
+		ul.inline.largegap li {
+			padding: 0 2em;
+		}
+		table.largegap td, table.largegap th {
+			padding-right: 2em;
 		}
 		</style>
 
@@ -81,38 +98,10 @@
 					</p>
 					</section>
 
-					<section data-transition="fade">
-					<h3>jQuery<span class="fragment fade-in">, $</span></h3>
-					<ul class="fragment fade-in">
-						<li>Core</li>
-						<li>UI &amp; Mobile</li>
-						<li>QUnit</li>
-						<li class="fragment grow highlight-green">Globalize</li>
-						<li>...</li>
-					</ul>
-					</section>
-
-					<section data-transition="fade">
-					<ul>
-						<li>My name is <em>Rafael Xavier de Souza</em>;</li>
-						<li>Computer Science at <em>University of Sao Paulo</em> (Brazil);</li>
-						<li>Team member at <em>jQuery</em>;</li>
-						<li>Former lead software engineer <em>IBM (LTC)</em>;</li>
-					</ul>
-					</section>
-
-				</section>
-
-
-				<!-- I18n -->
-				<section data-background="#000022">
+					<!-- Intro: Globalize and I18n -->
 
 					<section>
-					<h2>What's the problem?</h2>
-					</section>
-
-					<section>
-					<h3>Why should people care about internationalization?</h3>
+					<iframe width="600px" height="300px" src="jquery-ui/examples/spinner.html"></iframe>
 					</section>
 
 					<section data-transition="fade">
@@ -130,72 +119,191 @@
 					<footer>— Mark Davis <a href="http://macchiato.com/slides/unicode_and_internationalization.pdf">(unicode and internationalization slides)</a></footer>
 					</section>
 
-					<section data-transition="none">
-					<img alt="why internationalization graph 4" src="images/mark_davis-unicode_and_internationalization-6.png">
-					<footer>— Mark Davis <a href="http://macchiato.com/slides/unicode_and_internationalization.pdf">(unicode and internationalization slides)</a></footer>
-					</section>
-
 					<section data-transition="fade">
-					<h3>Translation ≠ Internationalization (i18n)</h3>
-					<img alt="doh" src="images/homer_simpson_doh.gif">
+					<iframe width="600px" height="450px" src="jquery-ui/examples/datepicker.html"></iframe>
 					</section>
 
 					<section>
-					<h3>What is Internationalization?</h3>
-					<p>I18n is the process that provides user with a localized experience that matches their own cultural and linguistic expectations.</p>
-					<blockquote>
-						If you internationalize, you design or develop your content, application, specification, and so on, in a way that ensures it will work well for, or can be easily adapted for, users from any culture, region, or language.
-						<footer>—<cite><a href="http://www.w3.org/standards/webdesign/i18n">W3C I18n specification</a></cite></footer>
-					</blockquote>
+					<img alt="angry" src="images/angry.jpg">
 					</section>
 
-					<section data-transition="none">
-					<img alt="Currency and Date" src="images/mark_davis-unicode_and_internationalization-56.png">
-					<footer>— Mark Davis <a href="http://macchiato.com/slides/unicode_and_internationalization.pdf">(unicode and internationalization slides)</a></footer>
+					<section>
+					<img alt="relieved" src="images/relieved.jpg">
 					</section>
 
-					<section data-transition="none">
-					<img alt="Relative dates" src="images/mark_davis-unicode_and_internationalization-57.png">
-					<footer>— Mark Davis <a href="http://macchiato.com/slides/unicode_and_internationalization.pdf">(unicode and internationalization slides)</a></footer>
+				</section>
+
+				<!-- Globalize Issues -->
+				<section data-background="#301B0D">
+					<section>
+					<h2>Globalize 0.x</h2>
 					</section>
 
-					<section data-transition="none">
-					<img alt="Plurals" src="images/mark_davis-unicode_and_internationalization-52.png">
-					<footer>— Mark Davis <a href="http://macchiato.com/slides/unicode_and_internationalization.pdf">(unicode and internationalization slides)</a></footer>
+					<section data-transition="fade">
+					<h1>⓷</h1>
 					</section>
 
-					<section data-transition="none">
-					<img alt="Delimeters" src="images/mark_davis-unicode_and_internationalization-155.png">
-					<footer>— Mark Davis <a href="http://macchiato.com/slides/unicode_and_internationalization.pdf">(unicode and internationalization slides)</a></footer>
+					<section data-transition="fade">
+					<h3>Not enough coverage</h3>
+					</section>
+
+					<section data-transition="fade" data-background="images/coverage__Persian_locale_completely_misleading.png">
+					</section>
+
+					<section data-transition="fade">
+					<h1>⓶</h1>
+					</section>
+
+					<section data-transition="fade">
+					<h3>Not enough functionality</h3>
+					</section>
+
+					<section data-transition="fade" data-background="images/functionality__Wrong_currency_for_estonian_culture__138.png">
+					</section>
+
+					<section data-transition="fade">
+					<pre><code class="diff" data-trim>
+diff --git a/lib/cultures/globalize.culture.et-EE.js b/lib/cultures/globalize.culture.et-EE.js
+index 5759bea..7c6aa7a 100644
+--- a/lib/cultures/globalize.culture.et-EE.js
++++ b/lib/cultures/globalize.culture.et-EE.js
+@@ -44,7 +44,7 @@ Globalize.addCultureInfo( "et-EE", "default", {
+ 		currency: {
+ 			pattern: ["-n $","n $"],
+ 			",": " ",
+-			symbol: "kr"
++			symbol: "€"
+ 		}
+ 	},
+ 	calendars: {
+					</code></pre>
+					</section>
+
+					<section data-transition="fade">
+					<table>
+						<tr>
+							<th colspan="2">Server data</th>
+							<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+							<th colspan="2">Pre-change</th>
+							<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+							<th colspan="2">Post-change</th>
+						</tr>
+						<tr>
+							<td>Dec, 29</td>
+							<td>EEK 200.00</td>
+							<td></td>
+							<td>29. Dets</td>
+							<td>200,00 <strong>kr</strong></td>
+							<td></td>
+							<td>29. Dets</td>
+							<td>200,00 <strong style="color:red">?</strong></td>
+						</tr>
+						<tr>
+							<td>Dec, 30</td>
+							<td>EEK -300.00</td>
+							<td></td>
+							<td>30. Dets</td>
+							<td>-300,00 <strong>kr</strong></td>
+							<td></td>
+							<td>30. Dets</td>
+							<td>-300,00 <strong style="color:red">?</strong></td>
+						</tr>
+						<tr>
+							<td>Jan, 2</td>
+							<td>EUR -15.00</td>
+							<td></td>
+							<td>2. Jaan</td>
+							<td>-15,00 <strong style="color:red">?</strong></td>
+							<td></td>
+							<td>2. Jaan</td>
+							<td>-15,00 <strong>€</strong></td>
+						</tr>
+					</table>
+					</section>
+
+					<section data-transition="fade" data-background="images/functionality__Add_fuzzy_date_to_dateFormat__152.png">
+					</section>
+
+					<section data-transition="fade" data-background="images/functionality__Add_fuzzy_date_to_dateFormat__152_diff.png">
+					</section>
+
+					<section data-transition="fade" data-background="images/functionality__Globalize_format_minPrecision__191.png">
+					</section>
+
+					<section data-transition="fade">
+					<h1>⓵</h1>
+					</section>
+
+					<section data-transition="fade">
+					<h3>Maintenance (review & fix)</h3>
+					</section>
+
+					<section data-transition="fade" data-background="images/fix__Albanian_locales__107.png">
+					</section>
+
+					<section data-transition="fade" data-background="images/fix__Albanian_locales.png">
+					</section>
+
+					<section data-transition="fade" data-background="images/fix__Currency_in_polish_settings_are_wrong__115.png">
+					</section>
+
+					<section data-transition="fade" data-background="images/fix__incorrect_parsing_using_the_Japanese_calendar__22.png">
+					</section>
+
+					<section data-transition="fade" data-background="images/fix__Fixed_the_problem_with_Japanese_eras.png">
+					</section>
+
+					<section data-transition="fade" data-background="images/fix__Fix_for_Polish_and_Polish_Poland_cultures_days_names_abbreviations__98.png">
+					</section>
+
+					<section data-transition="fade" data-background="images/fix__Fix_for_Polish_and_Polish_Poland_cultures_standard_calendar__101.png">
+					</section>
+
+					<section data-transition="fade" data-background="images/fix__Incorrect_name_of_the_swedish_culture__154.png">
+					</section>
+
+					<section data-transition="fade" data-background="images/fix__Japanese_abbreviated_month_formatting_with_the_counter_kanji__92.png">
+					</section>
+
+					<section data-transition="fade" data-background="images/fix__Update_en-IN__171.png">
+					</section>
+
+					<section data-transition="fade" data-background="images/fix__list.png">
+					</section>
+
+					<section data-transition="fade" data-background="images/pain__Persian_Calendar_Added__67.png">
+					</section>
+
+					<section data-transition="fade" data-background="images/pain__richard1.png">
+					</section>
+
+					<section data-transition="fade" data-background="images/pain__richard2.png">
+					</section>
+
+					<section data-transition="fade" data-background="images/peixe-morcego.jpg">
+					</section>
+
+					<section data-transition="fade">
+					<h1>┅</h1>
+					</section>
+
+					<section data-background="images/Evaluate_CLDR.png">
 					</section>
 
 				</section>
 
 
 				<!-- CLDR -->
-				<section data-background="#000022">
-					<section>
+				<section class="white" data-background="#ffffff">
+					<section data-transition="fade">
 					<h2>CLDR</h2>
 					<p>Common Locale Data Registry (CLDR)</p>
 					<p>Available at <a href="http://unicode.org/cldr/">http://unicode.org/cldr/</a></p>
 					</section>
 
 					<section data-transition="fade">
-					<h3>What is CLDR?</h3>
-					<blockquote>
-						The Unicode CLDR provides key building blocks for software to support the world's languages, with the largest and most extensive standard repository of locale data available.
-						<footer>—<cite><a href="http://cldr.unicode.org/">Unicode CLDR Project</a></cite></footer>
-					</blockquote>
-					</section>
-
-					<section data-transition="fade">
 					<img alt="Who uses CLDR?" src="images/mark_davis-unicode_and_internationalization-62.png">
 					<footer>— Mark Davis* <a href="http://macchiato.com/slides/unicode_and_internationalization.pdf">(unicode and internationalization slides) with the exception of the jQuery that I added myself</a></footer>
-					</section>
-
-					<section data-transition="fade">
-					<img alt="Scope" src="images/mark_davis-unicode_and_internationalization-156.png">
-					<footer>— Mark Davis <a href="http://macchiato.com/slides/unicode_and_internationalization.pdf">(unicode and internationalization slides)</a></footer>
 					</section>
 
 					<section data-transition="fade">
@@ -222,55 +330,86 @@
 					<p><em>Eg. current currency for BR = BRL (R$)</em></p>
 					</section>
 
+					<section data-transition="fade">
+					<div id="net-coverage">
+						<h3>+350 locales</h3>
+						<h4>(.NET)</h4>
+					</div>
+					<div id="cldr-coverage" class="fragment roll-in">
+						<h2>+740 locales</h2>
+						<h3>(CLDR)</h3>
+					</div>
+					</section>
+
+					<section data-transition="fade">
+					<h2><strong class="fragment fade-in">✔</strong> Currency issue</h2>
+					<h2><strong class="fragment fade-in">✔</strong> Relative time issue</h2>
+					<h2><strong class="fragment fade-in">✔</strong> ...</h2>
+					</section>
+
+					<section data-transition="fade" style="position:relative;">
+					<table style="margin: 0 auto;">
+						<tr>
+							<td style="text-align: center;"><h2>Globalize</h2></td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<td style="text-align: center;"><h2>CLDR</h2></td>
+						</tr>
+						<tr>
+							<td style="text-align: center;"><h3>Library</h3></td>
+							<td></td>
+							<td style="text-align: center;"><h3>Content</h3></td>
+						</tr>
+					</table>
+					</section>
+
 				</section>
 
 
-				<!-- Globalize -->
+				<!-- Problems 4a, 4b -->
 				<section data-background="#301B0D">
-					<section>
-					<h2>Globalize</h2>
+					<section data-transition="fade">
+					<h3>Unopinionated mechanism to load i18n content</h3>
+					</section>
+
+					<section data-transition="fade" data-background="images/load__better_default_culture_mechanism__188.png">
 					</section>
 
 					<section data-transition="fade">
-					<pre><code class="javascript" data-trim>
-Globalize.culture( "en" );
-Globalize.parseDate( "1/2/2003" );
-// =&gt; Thu Jan 02 2003
-
-Globalize.culture( "pt_BR" );
-Globalize.parseDate( "1/2/2003" );
-// =&gt; Sat Feb 01 2003
-					</code></pre>
+					<h3>Avoid duplicating data across multiple i18n CLDR libraries</h3>
 					</section>
 
-					<section data-transition="fade">
-					<p><a href="globalize-0.x/examples/index.html">globalize-0.x/examples/</a></p>
-					</section>
+				</section>
 
-					<section data-transition="fade">
-					<h3>Where does data come from?</h3>
-					<ul>
-						<li>Started by importing locale data from .Net (early 2010);</li>
-						<li>Giving as about as 350 "cultures";</li>
-					</ul>
-					</section>
-
-					<section data-transition="fade" data-background="images/globalize-1.png">
-					</section>
-
-					<section data-transition="fade" data-background="images/globalize-2.png">
-					</section>
-
-					<section data-transition="fade" data-background="images/globalize-3.png">
-					</section>
-
-					<section data-transition="fade" data-background="images/globalize-4.png">
-					</section>
-
-					<section data-transition="fade" data-background="images/globalize-5.png">
-					</section>
-
-					<section data-transition="fade" data-background="images/peixe-morcego.jpg">
+				<section class="white" data-background="#ffffff">
+					<section data-transition="fade" style="position:relative;">
+					<table style="margin: 0 auto;">
+						<tr class="fragment fade-in" data-fragment-index="3">
+							<td style="text-align: center;"><p>jquery.org</p></td>
+							<td></td>
+							<td style="text-align: center;"><p>unicode.org</p></td>
+						</tr>
+						<tr>
+							<td style="text-align: center;"><h2>Globalize</h2></td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<td style="text-align: center;"><h2>CLDR</h2></td>
+						</tr>
+						<tr>
+							<td style="text-align: center;"><h3>Library</h3></td>
+							<td></td>
+							<td style="text-align: center;"><h3>Content</h3></td>
+						</tr>
+						<tr class="fragment fade-in" data-fragment-index="4">
+							<td style="text-align: center;"><p>JS code</p></td>
+							<td></td>
+							<td style="text-align: center;"><p>JSON data</p></td>
+						</tr>
+					</table>
+					<div style="position: absolute; width: 100%; height: 100%; top: 50%">
+						<h2 class="fragment current-visible" data-fragment-index="1" style="margin: -0.5em 0;">&nbsp;&nbsp;&nbsp;&nbsp;+</h2>
+					</div>
+					<div style="position: absolute; width: 100%; height: 100%; top: 50%">
+						<h2 class="fragment current-visible" data-fragment-index="2" style="margin: -0.5em 0;">&nbsp;&nbsp;&nbsp;&nbsp;✃</h2>
+					</div>
 					</section>
 
 				</section>
@@ -284,13 +423,386 @@ Globalize.parseDate( "1/2/2003" );
 					</section>
 
 					<section data-transition="fade">
-					<h3>Goal</h3>
-					<ol>
-						<li>Leverage the official CLDR JSON data;</li>
-						<li>Allow users to load as much or as little data as they need;</li>
-						<li>Avoid duplicating data if using multiple i18n libraries that leverages CLDR;</li>
-						<li>Run in browsers or node.js;</li>
-					</ol>
+					<p style="margin-bottom: 1.5em;"><em>Where to use it?</em></p>
+					<ul class="inline largegap" style="text-align: center;">
+						<li><h2>Browser</h3></li>
+						<li><h2>Node.js</h3></li>
+					</ul>
+					</section>
+
+					<section data-transition="fade">
+					<p style="margin-bottom: 1.5em;"><em>How modular is it?</em></p>
+					<ul class="inline" style="text-align: center;">
+						<li><h3>Core</h3></li>
+						<li><h3>Date<br>module</h3></li>
+						<li><h3>Number<br>module</h3></li>
+						<li><h3>Translate<br>module</h3></li>
+						<li><h3>...</h3></li>
+					</ul>
+					</section>
+
+					<section data-transition="fade">
+					<p style="margin-bottom: 1.5em;"><em>Does it support my module loader?</em></p>
+					<ul class="inline largegap" style="text-align: center;">
+						<li><h2>AMD</h3></li>
+						<li><h2>CommonJS</h3></li>
+					</ul>
+					</section>
+
+					<section data-transition="fade">
+					<pre><code data-trim>
+<script src="external/cldr.js"></script>
+<script src="external/globalize.js"></script>
+<script src="external/globalize/date.js"></script>
+					</code></pre>
+					</section>
+
+					<section data-transition="fade">
+					<pre><code data-trim>
+bower install cldr.js globalize
+					</code></pre>
+					<pre><code data-trim>
+require.config({
+  paths: {
+    cldr: "bower_components/cldr.js/dist/cldr",
+    globalize: "bower_components/globalize/dist/globalize"
+  }
+});
+require( [ "globalize", "globalize/date" ], function( Globalize ) {
+  ...
+});
+					</code></pre>
+					</section>
+
+					<section data-transition="fade">
+					<pre><code data-trim>
+npm install cldr.js globalize
+					</code></pre>
+					<pre><code data-trim>
+var Globalize = require( "globalize" );
+...
+					</code></pre>
+					</section>
+
+					<section data-transition="fade">
+					<pre><code data-trim>
+wget "http://www.unicode.org/public/cldr/latest/json.zip"
+unzip json.zip -d cldr
+                    </code></pre>
+					<pre><code class="no-highlight" data-trim>
+cldr
+├── main
+│   ├── pt_BR
+│   │   ├── ...
+│   │   └── ca-gregorian.json
+│   ...
+└── supplemental
+    ├── likelySubtags.json
+    ├── timeData.json
+    ├── weekData.json
+    └── ...
+					</code></pre>
+					</section>
+
+					<section data-transition="fade">
+					<pre><code class="javascript" data-trim>
+Globalize.load({
+  main: {
+    en: { ...  }
+  },
+  supplemental: {
+    likelySubtags: { ...  },
+    timeDate: { ...  },
+    weekData: { ...  }
+  }
+});
+					</code></pre>
+					</section>
+
+					<section data-transition="fade">
+					<pre><code class="javascript" data-trim>
+&lt;script src="jquery.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+$.get( "cldr/en/ca-gregorian.json", Globalize.load );
+$.get( "cldr/supplemental/likelySubtags.json", Globalize.load );
+$.get( "cldr/supplemental/timeData.json", Globalize.load );
+$.get( "cldr/supplemental/weekData.json", Globalize.load );
+&lt;/script&gt;
+					</code></pre>
+					</section>
+
+					<section data-transition="fade">
+					<pre><code class="javascript" data-trim>
+define([
+  "globalize",
+  "json!fixtures/cldr/main/en/ca-gregorian.json",
+  "json!fixtures/cldr/supplemental/likelySubtags.json",
+  "json!fixtures/cldr/supplemental/timeData.json",
+  "json!fixtures/cldr/supplemental/weekData.json",
+  "globalize/date"
+], function( Globalize, enCaGregorian, likelySubtags, timeData, weekData ) {
+  Globalize.load( enCaGregorian );
+  Globalize.load( likelySubtags );
+  Globalize.load( timeData );
+  Globalize.load( weekData );
+});
+					</code></pre>
+					</section>
+
+					<section data-transition="fade">
+					<pre><code class="javascript" data-trim>
+var Globalize = require( "globalize" );
+Globalize.load( require( "./cldr/supplemental/likelySubtags.json" ) );
+Globalize.load( require( "./cldr/supplemental/timeData.json" ) );
+Globalize.load( require( "./cldr/supplemental/weekData.json" ) );
+Globalize.load( require( "./cldr/en/ca-gregorian.json" ) );
+					</code></pre>
+					</section>
+
+					<section data-transition="fade">
+					<pre><code class="no-highlight" data-trim>
+cldr
+├── main
+│   ├── en
+│   │   ├── ...
+│   │   └── ca-gregorian.json (??)
+│   ...
+└── supplemental
+    ├── likelySubtags.json (??)
+    ├── timeData.json (??)
+    ├── weekData.json (???)
+    └── ...
+					</code></pre>
+					</section>
+
+					<section data-transition="fade">
+					<pre><code class="no-highlight" data-trim>
+cldr
+├── main
+│   ├── en
+│   │   └── ...
+│   ├── myEn
+│   │   └── ...
+... ...
+					</code></pre>
+					</section>
+
+					<section data-transition="fade">
+					<h2>UTS TR#35</h2>
+					<p>(The CLDR specs)</p>
+					<p><a href="http://www.unicode.org/reports/tr35/">http://www.unicode.org/reports/tr35/</a></p>
+					</section>
+
+					<section>
+					<h2>Demo</h2>
+					</section>
+
+					<section data-transition="fade">
+					<h3>Format dates</h3>
+					</section>
+
+					<section data-transition="fade">
+					<h3>Parse dates</h3>
+					</section>
+
+					<section data-transition="fade">
+					<h3>Format dates, multiple locales</h3>
+					</section>
+
+					<section data-transition="fade">
+					<h3>Translate messages, multiple locales</h3>
+					</section>
+
+				</section>
+
+
+				<!-- cldr.js -->
+				<section data-background="#005151">
+
+					<section>
+					<h2>cldr.js</h2>
+					<p>Simple library to facilitate I18n software to access and use the official CLDR JSON data.</p>
+					<p><a href="https://github.com/rxaviers/cldr.git">https://github.com/rxaviers/cldr.git</a></p>
+					</section>
+
+					<section data-transition="fade">
+					<p style="margin-bottom: 1.5em;"><em>Where to use it?</em></p>
+					<ul class="inline largegap" style="text-align: center;">
+						<li><h2>Browser</h3></li>
+						<li><h2>Node.js</h3></li>
+					</ul>
+					</section>
+
+					<section data-transition="fade">
+					<p style="margin-bottom: 1.5em;"><em>Does it support my module loader?</em></p>
+					<ul class="inline largegap" style="text-align: center;">
+						<li><h2>AMD</h3></li>
+						<li><h2>CommonJS</h3></li>
+					</ul>
+					</section>
+
+					<section data-transition="fade">
+					<pre><code class="javascript" data-trim>
+Cldr.load({
+  main: {
+    en: { ...  }
+  },
+  supplemental: {
+    likelySubtags: { ...  },
+    timeDate: { ...  },
+    weekData: { ...  }
+  }
+});
+					</code></pre>
+					</section>
+
+					<section>
+					<h2>Demo</h2>
+					</section>
+
+					<section data-transition="none">
+					<h3>Get item given its path</h3>
+					</section>
+
+					<section data-transition="none">
+					<h3>Get a locale normalized</h3>
+					<table class="largegap">
+						<thead><tr>
+							<th>locale</th>
+							<th>languageId</th>
+							<th>maxLanguageId</th>
+							<th>language</th>
+							<th>script</th>
+							<th>region</th>
+						</tr></thead>
+						<tbody><tr>
+							<th>en</th>
+							<td>"en"</td>
+							<td>"en_Latn_US"</td>
+							<td>"en"</td>
+							<td>"Latn"</td>
+							<td>"US"</td>
+						</tr>
+						<tr>
+							<th>en_US</th>
+							<td>"en"</td>
+							<td>"en_Latn_US"</td>
+							<td>"en"</td>
+							<td>"Latn"</td>
+							<td>"US"</td>
+						</tr>
+						<tr>
+							<th>de</th>
+							<td>"de"</td>
+							<td>"de_Latn_DE"</td>
+							<td>"de"</td>
+							<td>"Latn"</td>
+							<td>"DE"</td>
+						</tr>
+						<tr>
+							<th>zh</th>
+							<td>"zh"</td>
+							<td>"zh_Hans_CN"</td>
+							<td>"zh"</td>
+							<td>"Hans"</td>
+							<td>"CN"</td>
+						</tr>
+						<tr>
+							<th>zh_TW</th>
+							<td>"zh_TW"</td>
+							<td>"zh_Hant_TW"</td>
+							<td>"zh"</td>
+							<td>"Hant"</td>
+							<td>"TW"</td>
+						</tr>
+						<tr>
+							<th>ar</th>
+							<td>"ar"</td>
+							<td>"ar_Arab_EG"</td>
+							<td>"ar"</td>
+							<td>"Arab"</td>
+							<td>"EG"</td>
+						</tr>
+						<tr>
+							<th>pt</th>
+							<td>"pt"</td>
+							<td>"pt_Latn_BR"</td>
+							<td>"pt"</td>
+							<td>"Latn"</td>
+							<td>"BR"</td>
+						</tr>
+						<tr>
+							<th>pt_BR</th>
+							<td>"pt"</td>
+							<td>"pt_Latn_BR"</td>
+							<td>"pt"</td>
+							<td>"Latn"</td>
+							<td>"BR"</td>
+						</tr>
+						<tr>
+							<th>pt_PT</th>
+							<td>"pt_PT"</td>
+							<td>"pt_Latn_PT"</td>
+							<td>"pt"</td>
+							<td>"Latn"</td>
+							<td>"PT"</td>
+						</tr>
+						<tr>
+							<th>es</th>
+							<td>"es"</td>
+							<td>"es_Latn_ES"</td>
+							<td>"es"</td>
+							<td>"Latn"</td>
+							<td>"ES"</td>
+						</tr>
+						<tr>
+							<th>es_AR</th>
+							<td>"es_AR"</td>
+							<td>"es_Latn_AR"</td>
+							<td>"es"</td>
+							<td>"Latn"</td>
+							<td>"AR"</td>
+						</tr></tbody>
+					</table>
+					</section>
+
+					<section data-transition="none">
+					<h3>Helpers</h3>
+					</section>
+
+				</section>
+
+
+				<!-- Thank You -->
+				<section class="white" data-background="#fff">
+
+					<section>
+					<img alt="We need you" src="images/we_need_you.png">
+					</section>
+
+					<section data-transition="fade">
+					<h2>Thank You</h2>
+					<h3>Questions?</h3>
+					<p><a href="http://rafael.xavier.blog.br/">Rafael Xavier</a></p>
+					<p><a href="http://twitter.com/rxaviers">@rxaviers</a></p>
+					<p><a href="http://github.com/rxaviers/">gh:rxaviers</a></p>
+					</section>
+
+					<section>
+					<h2>Thank You</h2>
+					<h3>Questions?</h3>
+					<p><a href="http://rafael.xavier.blog.br/">Rafael Xavier</a></p>
+					<p><a href="http://twitter.com/rxaviers">@rxaviers</a></p>
+					<p><a href="http://github.com/rxaviers/">gh:rxaviers</a></p>
+					</section>
+
+				</section>
+
+
+				<!-- BackUp -->
+				<section>
+					<section data-transition="fade">
+					<h2>Backup<h2>
 					</section>
 
 					<section data-transition="fade">
@@ -363,26 +875,6 @@ Globalize.parseDate( "1/2/2003" );
 					</section>
 
 					<section data-transition="fade">
-					<h3>Example: My Globalized App</h3>
-					<pre><code data-trim>
-wget "http://www.unicode.org/public/cldr/latest/json.zip"
-unzip json.zip -d cldr
-                    </code></pre>
-					<pre><code class="no-highlight" data-trim>
-my-app
-├── cldr
-│   ├── main
-│   │   ├── pt_BR
-│   │   │   ├── ...
-│   │   │   └── ca-gregorian.json
-│   │   ...
-│   └── supplemental
-│       ├── likelySubtags.json
-│       ├── timeData.json
-│       ├── weekData.json
-│       └── ...
-└── index.html
-					</code></pre>
 					</section>
 
 					<section data-transition="fade">
@@ -505,16 +997,8 @@ Globalize.locale( "en" );
 					</code></pre>
 					</section>
 
-				</section>
-
-
-				<!-- cldr.js -->
-				<section data-background="#005151">
-
 					<section>
 					<h2>cldr.js</h2>
-					<p>Simple library to facilitate I18n software to access and use the official CLDR JSON data.</p>
-					<p><a href="https://github.com/rxaviers/cldr.git">https://github.com/rxaviers/cldr.git</a></p>
 					</section>
 
 					<section>
@@ -829,30 +1313,18 @@ en_IN.main(path);
 					</code></pre>
 					</section>
 
-				</section>
-
-				<!-- Thank You -->
-				<section class="white" data-background="#fff">
-
-					<section>
-					<img alt="" src="images/jquery_foundation_logo.png">
-					<p>Support the jQuery Foundation at <a href="http://jquery.org">jquery.org</a></p>
-					</section>
-
-					<section>
-					<h2>Thank You</h2>
-					<h3>Questions?</h3>
-					<p><a href="http://rafael.xavier.blog.br/">Rafael Xavier</a></p>
-					<p><a href="http://twitter.com/rxaviers">@rxaviers</a></p>
-					<p><a href="http://github.com/rxaviers/">gh:rxaviers</a></p>
+					<section data-transition="fade">
+					<h3>EGP vs. ﺝ.ﻡ.</h3>
 					</section>
 
 				</section>
+
 
 			</div>
 
 		</div>
 
+		<script src="./bower_components/jquery/jquery.min.js"></script>
 		<script src="./bower_components/reveal.js/lib/js/head.min.js"></script>
 		<script src="./bower_components/reveal.js/js/reveal.min.js"></script>
 
@@ -876,7 +1348,6 @@ en_IN.main(path);
 					{ src: 'bower_components/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
 				]
 			});
-
 		</script>
 
 	</body>
